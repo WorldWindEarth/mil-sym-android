@@ -193,7 +193,7 @@ public class MainActivity extends Activity {
 
         mir = MilStdIconRenderer.getInstance();
         String cacheDir = getApplicationContext().getCacheDir().getAbsoluteFile().getAbsolutePath();
-        mir.init(cacheDir);
+        mir.init(this, cacheDir);
         DisplayMetrics metrics = new DisplayMetrics();
         //getWindowManager().getDefaultDisplay().getRealMetrics(metrics);
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
