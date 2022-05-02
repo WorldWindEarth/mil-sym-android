@@ -45,6 +45,6 @@ Build and install to Maven local:
 ./gradlew build publishToMavenLocal
 ````
   
-With JCenter not supporting new releases, we've moved to Maven Central.
-https://s01.oss.sonatype.org/#nexus-search;quick~mil-sym-android
-https://repo1.maven.org/maven2/io/github/missioncommand/mil-sym-android-renderer/
+With JCenter not supporting new releases, we've moved to Maven Central.  
+https://s01.oss.sonatype.org/#nexus-search;quick~mil-sym-android  
+https://repo1.maven.org/maven2/io/github/missioncommand/mil-sym-android-renderer/  
