@@ -46,16 +46,29 @@ project.afterEvaluate {
         }
     }
 }
-String generatedResDir = 'build/generated-res/'
 
-//Ensure that the generated resource directory is created
-file('build/generated-res/raw').mkdirs()
-android.sourceSets.main.res.srcDirs += generatedResDir
 
 import armyc2.c2sd.xml.parser.BinaryGeneratorHelper
 
 task writeBinaryResources{
-    BinaryGeneratorHelper.generate(file('xmlResources'), file(generatedResDir + 'raw'))
+    //println('CONFIGURE')
+
+    //Seems like you need something in the config section in order for the "doLast" section
+    //to process properly
+    String generatedResDir = 'build/generated-res/'
+    android.sourceSets.main.res.srcDirs += generatedResDir
+
+    doLast {
+        //println('DOLAST')
+        def folder = new File((String)android.sourceSets.main.res.srcDirs[1])
+        if (!folder.exists()) {
+            //Ensure that the generated resource directory is created
+            folder.mkdirs() //build/generated-res
+            file('build/generated-res/raw').mkdirs()  //build/generated-res/raw
+        }
+        //Generate bin files for XML
+        BinaryGeneratorHelper.generate(file('xmlResources'), file(generatedResDir + 'raw'))
+    }
 }
 
 afterEvaluate{
@@ -67,7 +80,7 @@ afterEvaluate{
 
 ext {
     PUBLISH_GROUP_ID = 'io.github.missioncommand'
-    PUBLISH_VERSION = '0.1.48'
+    PUBLISH_VERSION = '0.1.49'
     PUBLISH_ARTIFACT_ID = 'mil-sym-android-renderer'
 }
 
