@@ -44,18 +44,23 @@ afterEvaluate {
                 // Mostly self-explanatory metadata
                 pom {
                     name = PUBLISH_ARTIFACT_ID
-                    description = 'Stream Chat official Android SDK'
+                    description = '2525C Renderer'
                     url = 'https://github.com/missioncommand/mil-sym-android'
                     licenses {
                         license {
                             name = 'Apache-2.0 License'
-                            url = 'https://github.com/missioncommand/mil-sym-android/blob/master/LICENSE'
+                            url = 'https://www.apache.org/licenses/LICENSE-2.0'
                         }
                     }
                     developers {
                         developer {
-                          id = 'id'
-                          name = 'name'
+                          id = 'id1'
+                          name = 'Michael Spinelli'
+                          email = 'email'
+                        }
+						developer {
+                          id = 'id2'
+                          name = 'Michael Deutch'
                           email = 'email'
                         }
                         // Add all other devs here...
