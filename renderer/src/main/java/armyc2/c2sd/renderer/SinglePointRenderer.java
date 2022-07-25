@@ -391,6 +391,14 @@ public class SinglePointRenderer implements SettingsChangedEventListener
 
             //see if it's in the cache
             ii = _unitCache.get(key);
+            //safety check in case bitmaps are getting recycled while still in the LRU cache
+            if(ii != null && ii.getImage() != null && ii.getImage().isRecycled())
+            {
+                synchronized (_UnitCacheMutex) {
+                    _unitCache.remove(key);
+                    ii = null;
+                }
+            }
             //if not, generate symbol
             if (ii == null)//*/
             {
@@ -839,6 +847,14 @@ public class SinglePointRenderer implements SettingsChangedEventListener
 
             //see if it's in the cache
             ii = _tgCache.get(key);
+            //safety check in case bitmaps are getting recycled while still in the LRU cache
+            if(ii != null && ii.getImage() != null && ii.getImage().isRecycled())
+            {
+                synchronized (_SinglePointCacheMutex) {
+                    _tgCache.remove(key);
+                    ii = null;
+                }
+            }
             //if not, generate symbol
             if (ii == null)//*/
             {
