@@ -23,7 +23,7 @@ public class TacticalGraphicIconRenderer {
     private static Typeface _TGMP = null;
 	private static final Object _TGFontMutex = new Object();
 
-	public static ImageInfo getIcon(String symbolID, int size, Color color, int symStd)
+	public static ImageInfo getIcon(String symbolID, int size, Color color, int symStd, int outlineWidth, Color outlineColor)
 	{
 		ImageInfo ii = null;
 		
@@ -84,6 +84,19 @@ public class TacticalGraphicIconRenderer {
             {
                 synchronized(_TGFontMutex)
                 {
+                    if(outlineWidth > 0)
+                    {
+                        Paint tempFill = new Paint();
+                        tempFill.setStyle(Paint.Style.FILL_AND_STROKE);
+                        tempFill.setStrokeWidth(outlineWidth);
+                        tempFill.setColor(outlineColor.toARGB());
+                        tempFill.setTextSize(fontSize);
+                        tempFill.setAntiAlias(true);
+                        tempFill.setTextAlign(Align.CENTER);
+                        tempFill.setTypeface(_TGMP);
+
+                        canvas.drawText(strSymbol, centerPoint.x, centerPoint.y, tempFill);
+                    }
                     canvas.drawText(strSymbol, centerPoint.x, centerPoint.y, fillPaint);
                 }
             }

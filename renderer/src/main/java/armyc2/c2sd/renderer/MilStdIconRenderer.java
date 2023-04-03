@@ -161,7 +161,16 @@ public class MilStdIconRenderer
             symStd = Integer.parseInt(attributes.get(MilStdAttributes.SymbologyStandard));
         }
 
-        ImageInfo ii = TacticalGraphicIconRenderer.getIcon(symbolID, size, lineColor, symStd);
+        int outlineWidth = RendererSettings.getInstance().getSinglePointSymbolOutlineWidth();
+        boolean asIcon = false;
+        Color outlineColor = null;
+        if (attributes.indexOfKey(MilStdAttributes.DrawAsIcon) >= 0) {
+            asIcon = Boolean.getBoolean(attributes.get(MilStdAttributes.SymbologyStandard));
+            if(!asIcon)
+                outlineWidth = 0;
+        }
+        outlineColor = RendererUtilities.getIdealOutlineColor(lineColor);
+        ImageInfo ii = TacticalGraphicIconRenderer.getIcon(symbolID, size, lineColor, symStd, outlineWidth, outlineColor);
         return ii;
     }
 
