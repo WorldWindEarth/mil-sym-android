@@ -166,7 +166,7 @@ public class MilStdIconRenderer
         Color outlineColor = null;
         if (attributes.indexOfKey(MilStdAttributes.DrawAsIcon) >= 0) {
             asIcon = Boolean.getBoolean(attributes.get(MilStdAttributes.SymbologyStandard));
-            if(!asIcon)
+            if(asIcon)
                 outlineWidth = 0;
         }
         outlineColor = RendererUtilities.getIdealOutlineColor(lineColor);
